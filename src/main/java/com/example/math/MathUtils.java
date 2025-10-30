@@ -17,4 +17,18 @@ public final class MathUtils {
     public static int mode(List<Integer> values) {
         return ModeCalculator.computeMode(values);
     }
+
+    public static double variancePopulation(List<Integer> values) {
+    return VarianceCalculator.population(values);
+}
+public static double varianceSample(List<Integer> values) {
+    return VarianceCalculator.sample(values);
+}
+public static double stddevPopulation(List<Integer> values) {
+    return StdDevCalculator.population(values);
+}
+public static double stddevSample(List<Integer> values) {
+    return StdDevCalculator.sample(values);
+}
+
 }
