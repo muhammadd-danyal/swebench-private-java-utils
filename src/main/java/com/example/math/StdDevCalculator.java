@@ -6,10 +6,10 @@ final class StdDevCalculator {
     private StdDevCalculator() {}
 
     static double population(List<Integer> input) {
-        throw new UnsupportedOperationException("stddevPopulation() not implemented");
+        return Math.sqrt(VarianceCalculator.population(input));
     }
 
     static double sample(List<Integer> input) {
-        throw new UnsupportedOperationException("stddevSample() not implemented");
+        return Math.sqrt(VarianceCalculator.sample(input));
     }
 }
