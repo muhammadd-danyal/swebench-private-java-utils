@@ -35,8 +35,11 @@ public static double stddevSample(List<Integer> values) {
 }
 
 public static int range(List<Integer> values) {
-    throw new UnsupportedOperationException("Not implemented yet");
-}
-
-
+        if (values == null || values.isEmpty() || values.stream().allMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("Input cannot be null or empty.");
+        }
+        int max = Collections.max(values.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+        int min = Collections.min(values.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+        return max - min;
+    }
 }
