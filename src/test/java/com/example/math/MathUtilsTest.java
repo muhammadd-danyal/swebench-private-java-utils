@@ -46,4 +46,28 @@ class MathUtilsTest {
         List<Integer> vals = Arrays.asList(1, 2, 4, 100);
         Assertions.assertEquals(3.0, MathUtils.median(vals), 1e-9);
     }
+
+    @Test
+    void range_calculatesCorrectly() {
+        int result = MathUtils.range(Arrays.asList(1, 2, 3, 4, 5));
+        Assertions.assertEquals(4, result);
+    }
+
+    // F2P #1: Range with empty list should throw exception
+    @Test
+    void range_throwsForEmpty() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.range(Collections.emptyList()));
+    }
+
+    // F2P #2: Range with null list should throw exception
+    @Test
+    void range_throwsForNull() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.range(null));
+    }
+
+    // F2P #3: Range with all null values should throw exception
+    @Test
+    void range_throwsForAllNull() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.range(Arrays.asList(null, null, null)));
+    }
 }

@@ -1,6 +1,9 @@
 package com.example.math;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class MathUtils {
     private MathUtils() {}
@@ -31,4 +34,12 @@ public static double stddevSample(List<Integer> values) {
     return StdDevCalculator.sample(values);
 }
 
+public static int range(List<Integer> values) {
+        if (values == null || values.isEmpty() || values.stream().allMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("Input cannot be null or empty.");
+        }
+        int max = Collections.max(values.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+        int min = Collections.min(values.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+        return max - min;
+    }
 }
