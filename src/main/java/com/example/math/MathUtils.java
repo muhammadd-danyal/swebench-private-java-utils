@@ -1,6 +1,9 @@
 package com.example.math;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class MathUtils {
     private MathUtils() {}
@@ -30,5 +33,10 @@ public static double stddevPopulation(List<Integer> values) {
 public static double stddevSample(List<Integer> values) {
     return StdDevCalculator.sample(values);
 }
+
+public static int range(List<Integer> values) {
+    throw new UnsupportedOperationException("Not implemented yet");
+}
+
 
 }
