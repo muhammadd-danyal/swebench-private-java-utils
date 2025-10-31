@@ -42,4 +42,13 @@ public static int range(List<Integer> values) {
         int min = Collections.min(values.stream().filter(Objects::nonNull).collect(Collectors.toList()));
         return max - min;
     }
+
+    public static double percentile(java.util.List<Integer> values, double p) {
+        return QuantilesCalculator.nearestRankPercentile(values, p);
+    }
+
+    public static double iqr(java.util.List<Integer> values) {
+        return IqrCalculator.compute(values);
+    }
+
 }
