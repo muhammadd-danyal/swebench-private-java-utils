@@ -6,7 +6,9 @@ final class IqrCalculator {
     private IqrCalculator() {}
 
     static double compute(List<Integer> values) {
-        // stub for Commit 1: cause F2P to fail
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Delegates to nearest-rank percentile
+        double q1 = QuantilesCalculator.nearestRankPercentile(values, 25.0);
+        double q3 = QuantilesCalculator.nearestRankPercentile(values, 75.0);
+        return q3 - q1;
     }
 }
