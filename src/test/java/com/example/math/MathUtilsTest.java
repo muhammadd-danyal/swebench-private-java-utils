@@ -70,4 +70,31 @@ class MathUtilsTest {
     void range_throwsForAllNull() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.range(Arrays.asList(null, null, null)));
     }
+
+    @Test
+void adjustedSkewness_calculatesCorrectly() {
+    List<Integer> values = Arrays.asList(1, 2, 3, 4, 1000);
+    double result = MathUtils.adjustedSkewness(values);
+    Assertions.assertNotNull(result);
+}
+
+@Test
+void adjustedKurtosis_calculatesCorrectly() {
+    List<Integer> values = Arrays.asList(1, 2, 3, 4, 1000);
+    double result = MathUtils.adjustedKurtosis(values);
+    Assertions.assertNotNull(result);
+}
+
+@Test
+void adjustedSkewness_throwsForInvalidInputs() {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.adjustedSkewness(null));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.adjustedSkewness(Collections.emptyList()));
+}
+
+@Test
+void adjustedKurtosis_throwsForInvalidInputs() {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.adjustedKurtosis(null));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> MathUtils.adjustedKurtosis(Collections.emptyList()));
+}
+
 }

